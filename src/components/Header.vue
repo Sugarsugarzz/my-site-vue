@@ -1,20 +1,34 @@
 <template>
   <div class="m-header">
-    <h3>欢迎来到 Sugar 的博客</h3>
-    <div class="block">
-      <el-avatar :size="50" :src="user.avatar"></el-avatar>
-      <div>{{ user.username }}</div>
-    </div>
+    <el-menu :default-active="0" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+      <el-menu-item index="1"><a href="/">主页</a></el-menu-item>
+      <el-menu-item index="2"><a href="#">标签</a></el-menu-item>
+      <el-menu-item index="3"><a href="#">归档</a></el-menu-item>
+      <el-menu-item index="4"><a href="#">留言板</a></el-menu-item>
+      <el-menu-item index="5"><a href="#">关于我</a></el-menu-item>
 
-    <div class="m-action">
-      <span><el-link href="/blogs">主页</el-link></span>
-      <el-divider direction="vertical"></el-divider>
-      <span><el-link type="success" href="/blog/add">发表博客</el-link></span>
-      <el-divider direction="vertical"></el-divider>
-      <span v-show="!hasLogin"><el-link type="primary" href="/login">登录</el-link></span>
-      <el-divider direction="vertical"></el-divider>
-      <span v-show="hasLogin"><el-link type="danger" @click="logout">退出</el-link></span>
-    </div>
+      <el-submenu v-show="hasLogin" index="6">
+        <template slot="title">管理</template>
+        <el-menu-item index="4-1">用户管理</el-menu-item>
+        <el-submenu index="4-2">
+          <template slot="title">博客管理</template>
+          <el-menu-item index="4-2-1"><a href="/blog/add">发布博客</a></el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-menu-item index="7" class="menu-item-end">
+        <div v-show="!hasLogin">
+          <a href="/login">管理员登录</a>
+        </div>
+        <div v-show="hasLogin">
+          <el-avatar :size="30" :src="user.avatar"></el-avatar>
+          <el-divider direction="vertical"></el-divider>
+          <span>{{ user.username }}</span>
+          <el-divider direction="vertical"></el-divider>
+          <a style="color: rosybrown" @click="logout">退出</a>
+        </div>
+      </el-menu-item>
+
+    </el-menu>
   </div>
 </template>
 
@@ -53,12 +67,11 @@ export default {
 </script>
 
 <style scoped>
-  .m-header {
-    max-width: 960px;
-    margin: 0 auto;
-    text-align: center;
+  a {
+    text-decoration: none;
   }
-  .m-action {
-    margin: 10px 0;
+  .menu-item-end {
+    position: absolute;
+    right: 10px;
   }
 </style>

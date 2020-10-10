@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
-import Blogs from '../views/Blogs.vue'
+import Index from '../views/Index.vue'
 import BlogEdit from '../views/BlogEdit.vue'
 import BlogDetail from '../views/BlogDetail.vue'
 
@@ -10,13 +10,13 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Index',
-    redirect: {name: "Blogs"}
+    name: 'Index2',
+    redirect: {name: "Index"}
   },
   {
     path: '/blogs',
-    name: 'Blogs',
-    component: Blogs
+    name: 'Index',
+    component: Index
   },
   {
     path: '/login',

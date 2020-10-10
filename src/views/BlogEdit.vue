@@ -1,32 +1,46 @@
 <template>
   <div>
-    <Header></Header>
+    <el-container>
+      <!--Header-->
+      <el-header>
+        <Header></Header>
+      </el-header>
 
-    <div class="m-content">
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="标题" prop="title">
-          <el-input v-model="ruleForm.title"></el-input>
-        </el-form-item>
-        <el-form-item label="摘要" prop="description">
-          <el-input type="textarea" v-model="ruleForm.description"></el-input>
-        </el-form-item>
-        <el-form-item label="内容" prop="content">
-          <mavon-editor v-model="ruleForm.content"></mavon-editor>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">发表</el-button>
-          <el-button @click="resetForm('ruleForm')">重置</el-button>
-        </el-form-item>
-      </el-form>
-    </div>
+      <!--Main-->
+      <el-main>
+        <div class="m-content">
+          <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+            <el-form-item label="标题" prop="title">
+              <el-input v-model="ruleForm.title"></el-input>
+            </el-form-item>
+            <el-form-item label="摘要" prop="description">
+              <el-input type="textarea" v-model="ruleForm.description"></el-input>
+            </el-form-item>
+            <el-form-item label="内容" prop="content">
+              <mavon-editor v-model="ruleForm.content"></mavon-editor>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="submitForm('ruleForm')">发表</el-button>
+              <el-button @click="resetForm('ruleForm')">重置</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
+      </el-main>
+
+      <!--Footer-->
+      <el-footer>
+        <Footer></Footer>
+      </el-footer>
+    </el-container>
   </div>
 </template>
 
 <script>
 import Header from "../components/Header"
+import Footer from "../components/Footer"
 export default {
   name: "BlogEdit",
-  components: {Header},
+  components: {Header, Footer},
   data() {
     return {
       ruleForm: {

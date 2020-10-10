@@ -1,22 +1,16 @@
 <template>
   <div>
-    <Header></Header>
 
-    <div class="block">
-      <el-timeline>
-
-        <el-timeline-item :timestamp="blog.created" placement="top" v-for="blog in blogs">
-          <el-card>
-            <h4>
-              <router-link :to="{name: 'BlogDetail', params: {blogId: blog.id}}">
-                {{ blog.title }}
-              </router-link>
-            </h4>
-            <p>{{ blog.description }}</p>
-          </el-card>
-        </el-timeline-item>
-
-      </el-timeline>
+    <div class="m-block" v-for="blog in blogs">
+      <el-card>
+        <h4>
+          <router-link :to="{name: 'BlogDetail', params: {blogId: blog.id}}">
+            {{ blog.title }}
+          </router-link>
+        </h4>
+        <p>{{ blog.created}}</p>
+        <p>{{ blog.description }}</p>
+      </el-card>
     </div>
 
     <el-pagination class="m-page"
@@ -25,17 +19,14 @@
                    :current-page="currentPage"
                    :page-size="pageSize"
                    :total="total"
-                    @current-change=page>
+                   @current-change=page>
     </el-pagination>
   </div>
-
 </template>
 
 <script>
-import Header from "../components/Header"
 export default {
   name: "Blogs",
-  components: {Header},
   data() {
     return {
       blogs: {},
@@ -55,13 +46,16 @@ export default {
       })
     }
   },
-   created() {
+  created() {
     this.page(1)
-   }
+  }
 }
 </script>
 
 <style scoped>
+  .m-block {
+    margin:10px 20px 20px 30px;
+  }
   .m-page {
     margin: 0 auto;
     text-align: center;
