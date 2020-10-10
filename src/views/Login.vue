@@ -1,30 +1,28 @@
 <template>
   <div>
     <el-container>
-      <el-header>
-        <img class="m-logo" src="../assets/logo.png" alt="">
-      </el-header>
-      
       <el-main>
-        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-          <el-form-item label="用户名" prop="username">
-            <el-input v-model="ruleForm.username"></el-input>
-          </el-form-item>
-          <el-form-item label="密码" prop="password">
-            <el-input type="password" v-model="ruleForm.password"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
-            <el-button @click="resetForm('ruleForm')">重置</el-button>
-          </el-form-item>
-        </el-form>
+        <h1>登录</h1>
+        <el-card style="max-width: 500px; margin: 0 auto">
+          <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+            <el-form-item label="用户名" prop="username">
+              <el-input v-model="ruleForm.username"></el-input>
+            </el-form-item>
+            <el-form-item label="密码" prop="password">
+              <el-input type="password" v-model="ruleForm.password"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+              <el-button @click="resetForm('ruleForm')">重置</el-button>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary">
+                <router-link :to="{name: 'Index'}" style="text-decoration: none">返回首页</router-link>
+              </el-button>
+            </el-form-item>
+          </el-form>
+        </el-card>
       </el-main>
-
-      <el-button type="primary">
-        <router-link :to="{name: 'Index'}">
-          返回首页
-        </router-link>
-      </el-button>
     </el-container>
   </div>
 </template>

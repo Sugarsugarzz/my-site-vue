@@ -1,15 +1,16 @@
 <template>
   <div>
-
-    <div class="m-block" v-for="blog in blogs">
-      <el-card>
-        <h4>
+    <div>
+      <el-card class="box-card m-block" v-for="blog in blogs">
+        <div slot="header" class="clearfix">
           <router-link :to="{name: 'BlogDetail', params: {blogId: blog.id}}">
             {{ blog.title }}
           </router-link>
-        </h4>
-        <p>{{ blog.created}}</p>
-        <p>{{ blog.description }}</p>
+        </div>
+        <div class="text item">
+          <p>{{ blog.created}}</p>
+          <p>{{ blog.description }}</p>
+        </div>
       </el-card>
     </div>
 

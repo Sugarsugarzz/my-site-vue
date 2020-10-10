@@ -1,22 +1,32 @@
 <template>
   <div>
     <!--Search-->
-    <el-card class="card">
+    <el-card>
       <div>
-        <el-input placeholder="请输入搜索内容" v-model="search" class="input-with-select">
+        <el-input placeholder="请输入搜索内容" v-model="search">
           <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input>
       </div>
     </el-card>
 
     <!--Categories-->
-    <el-card class="card">
-      分类
+    <el-card>
+      <p>分类</p>
+      <div>
+        <el-button class="category">
+          机器学习
+          <span style="float: right">12</span>
+        </el-button>
+      </div>
     </el-card>
 
     <!--Labels-->
-    <el-card class="card">
-      标签
+    <el-card>
+      <p>标签</p>
+      <el-tag class="etag">
+        Java
+        &emsp;<span>12</span>
+      </el-tag>
     </el-card>
   </div>
 </template>
@@ -33,12 +43,17 @@ export default {
 </script>
 
 <style scoped>
-  .card {
+  .el-card {
     width: 100%;
     margin-top: 10px;
     padding: 5px 5px 5px 5px;
   }
-  .search {
-    float: right;
+  .category {
+    width: 100%;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    text-align: left;
+  }
+  .etag {
+    margin: 0 5px 5px 5px;
   }
 </style>
