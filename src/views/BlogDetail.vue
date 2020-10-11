@@ -21,16 +21,15 @@
             <div class="grid-content bg-purple-light">
               <el-card>
                 <h2>{{ blog.title }}</h2>
-                <span style="float: right; font-family: Arial; font-size: small">
-                  <i class="el-icon-date"></i>
-                  发布于：{{ blog.created }}
-                </span>
                 <el-link icon="el-icon-edit" v-show="ownBlog">
                   <router-link tag="span" :to="{name: 'BlogEdit', params: {blogId: blog.id}}">
                     编辑
                   </router-link>
                 </el-link>
-                <el-divider></el-divider>
+                <el-divider>
+                  <i class="el-icon-date"></i>
+                  发布于：{{ blog.created }}
+                </el-divider>
                 <div class="markdown-body" v-html="blog.content"></div>
               </el-card>
             </div>
