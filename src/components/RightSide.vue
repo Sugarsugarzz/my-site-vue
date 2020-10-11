@@ -11,7 +11,7 @@
 
     <!--Categories-->
     <el-card>
-      <p>分类</p>
+      <h5><i class="el-icon-collection"></i> 分类</h5>
       <div>
         <el-button class="category">
           机器学习
@@ -22,7 +22,7 @@
 
     <!--Labels-->
     <el-card>
-      <p>标签</p>
+      <h5><i class="el-icon-collection-tag"></i> 标签</h5>
       <el-tag class="etag">
         Java
         &emsp;<span>12</span>

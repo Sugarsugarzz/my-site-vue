@@ -8,16 +8,42 @@
 
       <!--Main-->
       <el-main>
-        <div  class="m-blog" >
-          <h2>{{ blog.title }}</h2>
-          <el-link icon="el-icon-edit" v-show="ownBlog">
-            <router-link :to="{name: 'BlogEdit', params: {blogId: blog.id}}">
-              编辑
-            </router-link>
-          </el-link>
-          <el-divider></el-divider>
-          <div class="markdown-body" v-html="blog.content"></div>
-        </div>
+        <el-row>
+          <!--Left-->
+          <el-col :span="5">
+            <div class="grid-content bg-purple">
+              <LeftSide></LeftSide>
+            </div>
+          </el-col>
+
+          <!--Middle-->
+          <el-col :span="14">
+            <div class="grid-content bg-purple-light">
+              <el-card>
+                <h2>{{ blog.title }}</h2>
+                <span style="float: right; font-family: Arial; font-size: small">
+                  <i class="el-icon-date"></i>
+                  发布于：{{ blog.created }}
+                </span>
+                <el-link icon="el-icon-edit" v-show="ownBlog">
+                  <router-link tag="span" :to="{name: 'BlogEdit', params: {blogId: blog.id}}">
+                    编辑
+                  </router-link>
+                </el-link>
+                <el-divider></el-divider>
+                <div class="markdown-body" v-html="blog.content"></div>
+              </el-card>
+            </div>
+          </el-col>
+
+          <!--Right-->
+          <el-col :span="5">
+            <div class="grid-content bg-purple">
+              <RightSide></RightSide>
+            </div>
+          </el-col>
+        </el-row>
+
       </el-main>
 
       <!--Footer-->
@@ -31,17 +57,20 @@
 <script>
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import LeftSide from "@/components/LeftSide";
+import RightSide from "@/components/RightSide";
 import "github-markdown-css/github-markdown.css"
 
 export default {
   name: "BlogDetail",
-  components: {Header, Footer},
+  components: {Header, Footer, LeftSide, RightSide},
   data() {
     return {
       blog: {
         id: "",
         title: "",
-        content: ""
+        content: "",
+        created: "",
       },
       ownBlog: false
     }
@@ -55,6 +84,7 @@ export default {
         const blog = res.data.data
         _this.blog.id = blog.id
         _this.blog.title = blog.title
+        _this.blog.created = blog.created
         // 对 markdown 进行渲染
         var MarkdownIt = require("markdown-it")
         var md = new MarkdownIt()
@@ -69,10 +99,7 @@ export default {
 </script>
 
 <style scoped>
-  .m-blog {
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    width: 100%;
-    min-height: 700px;
-    padding: 20px 15px;
+  .el-card {
+    margin:10px 20px 20px 30px;
   }
 </style>

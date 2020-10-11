@@ -1,13 +1,13 @@
 <template>
   <div class="m-footer">
     <el-divider></el-divider>
-    <p>
-      © 2020 Sugar
+    <div>
+      <span style="font-size: small">© 2020 Sugar</span>
       <br>
-      京ICP备20024476号-1
+      <span style="font-size: small">京ICP备20024476号-1</span>
       <br>
-      Powered by Vue
-    </p>
+      <span style="font-size: small">Powered by Vue</span>
+    </div>
   </div>
 
 </template>

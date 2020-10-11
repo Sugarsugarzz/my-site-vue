@@ -4,19 +4,20 @@ import Login from '../views/Login.vue'
 import Index from '../views/Index.vue'
 import BlogEdit from '../views/BlogEdit.vue'
 import BlogDetail from '../views/BlogDetail.vue'
-
+import Messages from '../views/Messages'
+import Tools from '../views/Tools'
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Index2',
-    redirect: {name: "Index"}
+    name: 'Index',
+    component: Index
   },
   {
     path: '/blogs',
-    name: 'Index',
-    component: Index
+    name: 'Index2',
+    redirect: {name: "Index"}
   },
   {
     path: '/login',
@@ -44,6 +45,16 @@ const routes = [
       requireAuth: true
     }
   },
+  {
+    path: '/messages',
+    name: 'Messages',
+    component: Messages
+  },
+  {
+    path: '/tools',
+    name: 'Tools',
+    component: Tools
+  }
 ]
 
 const router = new VueRouter({

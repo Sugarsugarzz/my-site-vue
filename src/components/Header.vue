@@ -2,9 +2,9 @@
   <div class="m-header">
     <el-menu :default-active="0" class="el-menu-demo" mode="horizontal" @select="handleSelect">
       <el-menu-item index="1"><a href="/">主页</a></el-menu-item>
-      <el-menu-item index="2"><a href="#">标签</a></el-menu-item>
-      <el-menu-item index="3"><a href="#">归档</a></el-menu-item>
-      <el-menu-item index="4"><a href="#">留言板</a></el-menu-item>
+      <el-menu-item index="2"><a href="#">归档</a></el-menu-item>
+      <el-menu-item index="3"><a href="/messages">留言板</a></el-menu-item>
+      <el-menu-item index="4"><a href="/tools">工具</a></el-menu-item>
       <el-menu-item index="5"><a href="#">关于我</a></el-menu-item>
 
       <el-submenu v-show="hasLogin" index="6">
@@ -52,7 +52,7 @@ export default {
         }
       }).then(res => {
         this.$store.commit("REMOVE_INFO")
-        this.$router.push("/login")
+        this.$router.push("/")
       })
     }
   },

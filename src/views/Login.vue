@@ -1,29 +1,18 @@
 <template>
   <div>
-    <el-container>
-      <el-main>
-        <h1>登录</h1>
-        <el-card style="max-width: 500px; margin: 0 auto">
-          <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="用户名" prop="username">
-              <el-input v-model="ruleForm.username"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" prop="password">
-              <el-input type="password" v-model="ruleForm.password"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
-              <el-button @click="resetForm('ruleForm')">重置</el-button>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary">
-                <router-link :to="{name: 'Index'}" style="text-decoration: none">返回首页</router-link>
-              </el-button>
-            </el-form-item>
-          </el-form>
-        </el-card>
-      </el-main>
-    </el-container>
+    <el-form ref="ruleForm" :model="ruleForm" :rules="rules" label-width="80px" class="login-box">
+      <h3 class="login-title">登录</h3>
+      <el-form-item label="用户名" prop="username">
+        <el-input type="text" placeholder="请输入账号" v-model="ruleForm.username"/>
+      </el-form-item>
+      <el-form-item label="密码" prop="password">
+        <el-input type="password" placeholder="请输入密码" v-model="ruleForm.password"/>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+      </el-form-item>
+      <router-link :to="{name: 'Index'}" style="text-decoration: none">返回首页</router-link>
+    </el-form>
   </div>
 </template>
 
@@ -59,7 +48,7 @@ export default {
             this.$store.commit("SET_TOKEN", jwt);
             this.$store.commit("SET_USERINFO", userInfo);
             // 跳转
-            this.$router.push("/blogs")
+            this.$router.push("/")
 
           })
         } else {
@@ -76,47 +65,20 @@ export default {
 </script>
 
 <style scoped>
-  .el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
+  .login-box {
+    border: 1px solid #DCDFE6;
+    width: 350px;
+    margin:180px auto;
+    padding: 35px 35px 15px 35px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    box-shadow: 0 0 25px #909399;
+  }
+
+  .login-title {
     text-align: center;
-    line-height: 60px;
-  }
-
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
-  }
-
-  .el-main {
-    /*background-color: #E9EEF3;*/
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
-
-  body > .el-container {
-    margin-bottom: 40px;
-  }
-
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }
-
-  .m-logo {
-    margin-top: 10px;
-    height: 70%;
-  }
-
-  .demo-ruleForm {
-    max-width: 350px;
-    margin: 0 auto;
+    margin: 0 auto 40px auto;
+    color: #303133;
   }
 </style>

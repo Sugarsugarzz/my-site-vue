@@ -8,13 +8,32 @@
       </div>
     </el-card>
 
-    <!--MostViewed-->
+    <!--Tools-->
     <el-card>
-      访问最多的文章
+      <h5>常用工具</h5>
+      <div class="tool-card">
+        工具一
+      </div>
+      <div class="tool-card">
+        工具二
+      </div>
     </el-card>
+
     <!--LatestMessage-->
     <el-card>
-      最新留言
+      <h5>最新留言</h5>
+      <div class="message-card">
+        <strong style="color: blue">Sugar</strong>
+        <span style="font-size: x-small; float: right">评论于 2020-10-11</span>
+        <br>
+        第一个留言
+      </div>
+      <div class="message-card">
+        <strong style="color: blue">Hello</strong>
+        <span style="font-size: x-small; float: right">评论于 2020-10-11</span>
+        <br>
+        第二个留言
+      </div>
     </el-card>
   </div>
 </template>
@@ -35,5 +54,24 @@ export default {
     width: 100%;
     margin-top: 10px;
     padding: 5px 5px 5px 5px;
+  }
+  .tool-card {
+    float: left;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    width: 100%;
+    font-size: small;
+    margin-bottom: 10px;
+    font-family: "微软雅黑";
+  }
+  .tool-card:hover {
+    background-color: #409EFF;
+  }
+  .message-card {
+    float: left;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    width: 100%;
+    font-size: small;
+    margin-bottom: 10px;
+    font-family: "微软雅黑";
   }
 </style>
