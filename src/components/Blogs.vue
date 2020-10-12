@@ -36,15 +36,14 @@ export default {
       blogs: {},
       currentPage: 1,
       total: 0,
-      pageSize: 5
+      pageSize: 8
     }
   },
   methods: {
     page(currentPage) {
       this.$axios.get("/blogs?currentPage=" + currentPage).then(res => {
-        console.log(res)
         this.blogs = res.data.data.records
-        this.currentPage = res.data.data.currentPage
+        this.currentPage = res.data.data.current
         this.total = res.data.data.total
         this.pageSize = res.data.data.size
       })

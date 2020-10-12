@@ -22,17 +22,11 @@
     <!--LatestMessage-->
     <el-card>
       <h5>最新留言</h5>
-      <div class="message-card">
-        <strong style="color: blue">Sugar</strong>
-        <span style="font-size: x-small; float: right">评论于 2020-10-11</span>
+      <div class="message-card" v-for="message in messages">
+        <strong style="color: #6495ED">{{ message.nickname }}</strong>
+        <span style="font-size: x-small; float: right">评论于 {{ message.created }}</span>
         <br>
-        第一个留言
-      </div>
-      <div class="message-card">
-        <strong style="color: blue">Hello</strong>
-        <span style="font-size: x-small; float: right">评论于 2020-10-11</span>
-        <br>
-        第二个留言
+        {{ message.comment }}
       </div>
     </el-card>
   </div>
@@ -44,7 +38,19 @@ export default {
   data() {
     return {
       avater: "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1793576242,463709846&fm=26&gp=0.jpg",
+      messages: {},
     }
+  },
+  methods: {
+    getLatestMessages() {
+      const _this = this;
+      _this.$axios("/messages").then(res => {
+        _this.messages = res.data.data.records
+      })
+    }
+  },
+  created() {
+    this.getLatestMessages()
   }
 }
 </script>
@@ -64,7 +70,7 @@ export default {
     font-family: "微软雅黑";
   }
   .tool-card:hover {
-    background-color: #409EFF;
+    background-color: #D9ECFF;
   }
   .message-card {
     float: left;

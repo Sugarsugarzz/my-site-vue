@@ -113,6 +113,6 @@ export default {
   text-align: center;
 }
 .tool-card:hover {
-  background-color: #409EFF;
+  background-color: #D9ECFF;
 }
 </style>

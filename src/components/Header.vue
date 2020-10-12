@@ -6,15 +6,7 @@
       <el-menu-item index="3"><a href="/messages">留言板</a></el-menu-item>
       <el-menu-item index="4"><a href="/tools">工具</a></el-menu-item>
       <el-menu-item index="5"><a href="#">关于我</a></el-menu-item>
-
-      <el-submenu v-show="hasLogin" index="6">
-        <template slot="title">管理</template>
-        <el-menu-item index="4-1">用户管理</el-menu-item>
-        <el-submenu index="4-2">
-          <template slot="title">博客管理</template>
-          <el-menu-item index="4-2-1"><a href="/blog/add">发布博客</a></el-menu-item>
-        </el-submenu>
-      </el-submenu>
+      <el-menu-item index="6" v-show="hasLogin"><a href="/back/blogs">后台管理</a></el-menu-item>
       <el-menu-item index="7" class="menu-item-end">
         <div v-show="!hasLogin">
           <a href="/login">管理员登录</a>

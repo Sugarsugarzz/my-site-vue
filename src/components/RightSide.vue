@@ -12,21 +12,19 @@
     <!--Categories-->
     <el-card>
       <h5><i class="el-icon-collection"></i> 分类</h5>
-      <div>
-        <el-button class="category">
-          机器学习
-          <span style="float: right">12</span>
-        </el-button>
+      <div v-for="category in categories" class="category-box">
+        {{ category.name }}
       </div>
     </el-card>
 
     <!--Labels-->
     <el-card>
       <h5><i class="el-icon-collection-tag"></i> 标签</h5>
-      <el-tag class="etag">
-        Java
-        &emsp;<span>12</span>
-      </el-tag>
+      <span v-for="tag in tags">
+        <el-tag class="tag-box">
+          {{ tag.name }}
+        </el-tag>
+      </span>
     </el-card>
   </div>
 </template>
@@ -37,7 +35,23 @@ export default {
   data() {
     return {
       search: '',
+      categories: {},
+      tags: {}
     }
+  },
+  methods: {
+    getCategoriesAndTags() {
+      const _this = this;
+      _this.$axios.get("/categories").then(res => {
+        _this.categories = res.data.data
+      });
+      _this.$axios.get("/tags").then(res => {
+        _this.tags = res.data.data
+      })
+    }
+  },
+  created() {
+    this.getCategoriesAndTags()
   }
 }
 </script>
@@ -48,12 +62,18 @@ export default {
     margin-top: 10px;
     padding: 5px 5px 5px 5px;
   }
-  .category {
+  .category-box {
     width: 100%;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-    text-align: left;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    font-size: medium;
+    margin-bottom: 10px;
+    text-align: center;
+    height: 25px;
   }
-  .etag {
+  .category-box:hover {
+    background-color: #D9ECFF;
+  }
+  .tag-box {
     margin: 0 5px 5px 5px;
   }
 </style>

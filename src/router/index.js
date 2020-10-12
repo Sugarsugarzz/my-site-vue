@@ -6,6 +6,9 @@ import BlogEdit from '../views/BlogEdit.vue'
 import BlogDetail from '../views/BlogDetail.vue'
 import Messages from '../views/Messages'
 import Tools from '../views/Tools'
+import ManageBlogs from "../views/back/ManageBlogs";
+import ManageCategories from "../views/back/ManageCategories";
+import ManageTags from "../views/back/ManageTags";
 Vue.use(VueRouter)
 
 const routes = [
@@ -54,7 +57,31 @@ const routes = [
     path: '/tools',
     name: 'Tools',
     component: Tools
-  }
+  },
+  {
+    path: '/back/blogs',
+    name: 'ManageBlogs',
+    component: ManageBlogs,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/back/categories',
+    name: 'ManageCategories',
+    component: ManageCategories,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/back/tags',
+    name: 'ManageTags',
+    component: ManageTags,
+    meta: {
+      requireAuth: true
+    }
+  },
 ]
 
 const router = new VueRouter({
