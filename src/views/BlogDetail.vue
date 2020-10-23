@@ -9,15 +9,9 @@
       <!--Main-->
       <el-main>
         <el-row>
-          <!--Left-->
-          <el-col :span="5">
-            <div class="grid-content bg-purple">
-              <LeftSide></LeftSide>
-            </div>
-          </el-col>
 
           <!--Middle-->
-          <el-col :span="14">
+          <el-col :span="19">
             <div class="grid-content bg-purple-light">
               <el-card>
                 <h2>{{ blog.title }}</h2>
