@@ -5,7 +5,7 @@ import store from './store'
 
 
 // 默认请求前缀
-axios.defaults.baseURL="http://120.79.73.88:8081"   // 生产环境
+axios.defaults.baseURL="/api/"   // 生产环境
 // axios.defaults.baseURL="http://localhost:8081"   // 开发环境
 
 // 前置拦截

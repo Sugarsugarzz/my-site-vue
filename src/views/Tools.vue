@@ -25,9 +25,11 @@
                 <el-row :gutter="20">
                   <el-col :span="8">
                     <div class="grid-content bg-purple">
-                      <div class="tool-card">
-                        工具一
-                      </div>
+                      <router-link tag="div" :to="{name: 'SensitiveDetection'}">
+                        <div class="tool-card">
+                          文本敏感度检测
+                        </div>
+                      </router-link>
                     </div>
                   </el-col>
                   <el-col :span="8">

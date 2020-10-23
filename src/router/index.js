@@ -6,6 +6,7 @@ import BlogEdit from '../views/BlogEdit.vue'
 import BlogDetail from '../views/BlogDetail.vue'
 import Messages from '../views/Messages'
 import Tools from '../views/Tools'
+import SensitiveDetection from '../views/tool/SensitiveDetection'
 import ManageBlogs from "../views/back/ManageBlogs";
 import ManageCategories from "../views/back/ManageCategories";
 import ManageTags from "../views/back/ManageTags";
@@ -82,6 +83,11 @@ const routes = [
       requireAuth: true
     }
   },
+  {
+    path: '/tool/sensitive',
+    name: 'SensitiveDetection',
+    component: SensitiveDetection
+  }
 ]
 
 const router = new VueRouter({
