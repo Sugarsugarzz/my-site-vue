@@ -16,7 +16,7 @@
 
           <!--Middle-->
           <el-col :span="20">
-            <div class="grid-content bg-purple-light">
+            <div class="grid-content bg-purple-light" style="margin-left: 20px;">
               <el-button type="primary" @click="addCategory">添加分类</el-button>
               <el-divider></el-divider>
               <el-table :data="categories" style="width: 100%">

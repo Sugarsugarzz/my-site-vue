@@ -19,39 +19,24 @@
             <div class="grid-content bg-purple-light" style="margin-left: 20px;">
               <el-button type="primary" @click="goAddBlog">发表博客</el-button>
               <el-divider></el-divider>
-              <el-table
-                  :data="tableData"
-                  style="width: 100%">
-                <el-table-column
-                    label="日期"
-                    width="180">
+
+              <el-table :data="blogs" style="width: 100%">
+                <el-table-column label="标题" width="180">
                   <template slot-scope="scope">
-                    <i class="el-icon-time"></i>
-                    <span style="margin-left: 10px">{{ scope.row.date }}</span>
+                    <span style="margin-left: 10px">{{ scope.row.title }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column
-                    label="姓名"
-                    width="180">
+
+                <el-table-column label="创建日期" width="180">
                   <template slot-scope="scope">
-                    <el-popover trigger="hover" placement="top">
-                      <p>姓名: {{ scope.row.name }}</p>
-                      <p>住址: {{ scope.row.address }}</p>
-                      <div slot="reference" class="name-wrapper">
-                        <el-tag size="medium">{{ scope.row.name }}</el-tag>
-                      </div>
-                    </el-popover>
+                    <span style="margin-left: 10px">{{ scope.row.created }}</span>
                   </template>
                 </el-table-column>
+
                 <el-table-column label="操作">
                   <template slot-scope="scope">
-                    <el-button
-                        size="mini"
-                        @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                    <el-button
-                        size="mini"
-                        type="danger"
-                        @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                    <el-button size="mini" @click="goEditBlog(scope.row.id)">编辑</el-button>
+                    <el-button size="mini" type="danger" @click="deleteBlog(scope.row.title, scope.row.id)">删除</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -73,35 +58,50 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/back/Sidebar";
+import Element from "element-ui";
 
 export default {
   name: "ManageBlogs",
   components: {Sidebar, Header, Footer},
   data() {
     return {
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      blogs: {},
+      currentPage: 1,
+      total: 0,
+      pageSize: 10
     }
   },
   methods: {
     goAddBlog() {
       this.$router.push("/blog/add")
+    },
+    goEditBlog(id) {
+      this.$router.push("/blog/" + id + "/edit")
+    },
+    page(currentPage, pageSize) {
+      this.$axios.get("/blogs?currentPage=" + currentPage + "&pageSize=" + pageSize).then(res => {
+        this.blogs = res.data.data.records
+        this.currentPage = res.data.data.current
+        this.total = res.data.data.total
+        this.pageSize = res.data.data.size
+      })
+    },
+    deleteBlog(name, id) {
+      const _this = this;
+      _this.$confirm('是否确定删除 ' + name + ' 博客？', '确认信息', {
+        distinguishCancelAndClose: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      }).then(() => {
+        _this.$axios.post("/blog/delete/" + id).then(res => {
+          Element.Message.success("博客删除成功！")
+          _this.page(1, 10)
+        })
+      })
     }
+  },
+  created() {
+    this.page(1, 10)
   }
 }
 </script>

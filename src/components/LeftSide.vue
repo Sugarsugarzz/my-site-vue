@@ -12,10 +12,9 @@
     <el-card>
       <h5>常用工具</h5>
       <div class="tool-card">
-        工具一
-      </div>
-      <div class="tool-card">
-        工具二
+        <router-link tag="span" :to="{name: 'SensitiveDetection'}">
+          文本敏感度检测
+        </router-link>
       </div>
     </el-card>
 
@@ -44,7 +43,7 @@ export default {
   methods: {
     getLatestMessages() {
       const _this = this;
-      _this.$axios("/messages").then(res => {
+      _this.$axios.get("/messages?currentPage=1&pageSize=5").then(res => {
         _this.messages = res.data.data.records
       })
     }

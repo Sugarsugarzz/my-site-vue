@@ -132,9 +132,9 @@ export default {
         }
       });
     },
-    page(currentPage) {
+    page(currentPage, pageSize) {
       const _this = this;
-      _this.$axios.get("/messages?currentPage=" + currentPage).then(res => {
+      _this.$axios.get("/messages?currentPage=" + currentPage + "&pageSize=" + pageSize).then(res => {
         _this.messages = res.data.data.records
         _this.currentPage = res.data.data.current
         _this.total = res.data.data.total
@@ -147,7 +147,7 @@ export default {
     }
   },
   created() {
-    this.page(1)
+    this.page(1, 10)
   }
 }
 </script>

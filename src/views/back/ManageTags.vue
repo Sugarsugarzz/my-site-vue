@@ -16,7 +16,7 @@
 
           <!--Middle-->
           <el-col :span="20">
-            <div class="grid-content bg-purple-light">
+            <div class="grid-content bg-purple-light" style="margin-left: 20px;">
               <el-button type="primary" @click="addTag">添加标签</el-button>
               <el-divider></el-divider>
               <el-table :data="tags" style="width: 100%">
